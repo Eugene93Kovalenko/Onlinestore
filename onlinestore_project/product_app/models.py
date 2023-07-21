@@ -11,3 +11,6 @@ class Color(models.Model):
     class Meta:
         verbose_name = "Цвет"
         verbose_name_plural = "Цвета"
+
+
+text = 'asd'
