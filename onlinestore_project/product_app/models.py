@@ -57,8 +57,8 @@ class Product(models.Model):
 
     name = models.CharField(max_length=50)
     price = models.DecimalField(max_digits=7, decimal_places=2)
-    size = models.ForeignKey(Size, on_delete=models.CASCADE, related_name="products")
-    color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name="products")
+    # size = models.ForeignKey(Size, on_delete=models.CASCADE, related_name="products")
+    # color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name="products")
     color_choices = models.CharField(
         max_length=10, choices=ColorChoices.choices, blank=True
     )
@@ -84,6 +84,20 @@ class Product(models.Model):
         verbose_name = "Товар"
         verbose_name_plural = "Товары"
         ordering = ["name"]
+
+
+class ProductSizeColor(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    size = models.ForeignKey(Size, on_delete=models.CASCADE)
+    color = models.ForeignKey(Color, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+
+    class Meta:
+        verbose_name = "Товар - Размер - Цвет"
+        verbose_name_plural = "Товар - Размер - Цвет"
+
+    def __str__(self):
+        return f"{self.product} - {self.size} - {self.color}"
 
 
 class ProductImage(models.Model):

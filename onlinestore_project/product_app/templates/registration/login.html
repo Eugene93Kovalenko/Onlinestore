@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% include 'include/navbar.html' %}
+{% block content %}
+    <div class="col-4">
+        <h1>Sign In</h1>
+        <hr>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+        <button class="btn btn-outline-primary py-md-2 px-md-3">Submit</button>
+        </form>
+    </div>
+{% endblock %}
+
+
+
+<!--{% if form.errors %}-->
+<!--  <p>Your username and password didn't match. Please try again.</p>-->
+<!--{% endif %}-->
+
+<!--{% if next %}-->
+<!--  {% if user.is_authenticated %}-->
+<!--    <p>Your account doesn't have access to this page. To proceed,-->
+<!--    please login with an account that has access.</p>-->
+<!--  {% else %}-->
+<!--    <p>Please login to see this page.</p>-->
+<!--  {% endif %}-->
+<!--{% endif %}-->
+
+<!--<form method="post" action="{% url 'login' %}">-->
+<!--{% csrf_token %}-->
+<!--<table>-->
+
+<!--<tr>-->
+<!--  <td>{{ form.username.label_tag }}</td>-->
+<!--  <td>{{ form.username }}</td>-->
+<!--</tr>-->
+
+<!--<tr>-->
+<!--  <td>{{ form.password.label_tag }}</td>-->
+<!--  <td>{{ form.password }}</td>-->
+<!--</tr>-->
+<!--</table>-->
+
+<!--<input type="submit" value="login" />-->
+<!--<input type="hidden" name="next" value="{{ next }}" />-->
+<!--</form>-->
+
+<!--{# Assumes you setup the password_reset view in your URLconf #}-->
+<!--<p><a href="{% url 'password_reset' %}">Lost password?</a></p>-->
+
+
+
+        
+<!--        &lt;!&ndash; JavaScript Libraries &ndash;&gt;-->
+<!--        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
+<!--        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>-->
+<!--        <script src="lib/easing/easing.min.js"></script>-->
+<!--        <script src="lib/slick/slick.min.js"></script>-->
+
+<!--        -->
+<!--        &lt;!&ndash; Template Javascript &ndash;&gt;-->
+<!--        <script src="js/main.js"></script>-->
+<!--    </body>-->
+

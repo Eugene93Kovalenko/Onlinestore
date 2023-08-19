@@ -1,0 +1,76 @@
+{% load static %}
+<!--{% load custom_tags %}-->
+<div class="col-lg-3 col-md-12">
+    <!-- Price Start -->
+    <form method="get">
+        <div class="border-bottom mb-4 pb-4">
+            <h5 class="font-weight-semi-bold mb-4">Filter by price</h5>
+            <div class="wrapper">
+                <div class="values">
+                    <span id="range1">
+
+                    </span>
+                    <span> &dash; </span>
+                    <span id="range2">
+
+                    </span>
+                </div>
+                <div class="container">
+                    <div class="slider-track"></div>
+                    <input type="range" name="price1" min="0" max="500" {% if selected_price1 %}
+                           value="{{ selected_price1 }}" {% else %} value="0" {% endif %} step="10" id="slider-1"
+                           oninput="slideOne()">
+                    <input type="range" name="price2" min="0" max="500" {% if selected_price2 %}
+                           value="{{ selected_price2 }}" {% else %} value="500" {% endif %} step="10" id="slider-2"
+                           oninput="slideTwo()">
+                </div>
+            </div>
+        </div>
+        <!-- Price End -->
+
+        <!-- Color Start -->
+        <div class="border-bottom mb-4 pb-4">
+            <h5 class="font-weight-semi-bold mb-4">Filter by color</h5>
+            {% for color, num in color_list_for_sidebar %}
+            {% if forloop.first %}
+            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                <input type="checkbox" class="custom-control-input" id="color-all" name="color" value="">
+                <label class="custom-control-label" for="color-all">{{ color }}</label>
+                <span class="badge border font-weight-normal">{{ count_products }}</span>
+            </div>
+            {% else %}
+            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                <input type="checkbox" class="custom-control-input" id="color-{{ forloop.counter0 }}"
+                       {% if color.id in selected_color %} checked {% endif %} name="colors" value="{{ color.id }}">
+                <label class="custom-control-label" for="color-{{ forloop.counter0 }}">{{ color }}</label>
+                <span class="badge border font-weight-normal">{{ num }}</span>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <!-- Color End -->
+
+        <!-- Size Start -->
+        <div class="mb-5">
+            <h5 class="font-weight-semi-bold mb-4">Filter by size</h5>
+            {% for size, num in size_list_for_sidebar %}
+            {% if forloop.first %}
+            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                <input type="checkbox" class="custom-control-input" id="size-all" name="size" value="">
+                <label class="custom-control-label" for="size-all">{{ size }}</label>
+                <span class="badge border font-weight-normal">{{ count_products }}</span>
+            </div>
+            {% else %}
+            <div class="custom-control custom-checkbox d-flex align-items-center justify-content-between mb-3">
+                <input type="checkbox" class="custom-control-input" id="size-{{ forloop.counter0 }}"
+                       {% if size.id in selected_size %} checked {% endif %} name="sizes" value="{{ size.id }}">
+                <label class="custom-control-label" for="size-{{ forloop.counter0 }}">{{ size }}</label>
+                <span class="badge border font-weight-normal">{{ num }}</span>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        <button class="btn btn-outline-primary py-md-2 px-md-3">Submit</button>
+    </form>
+    <!-- Size End -->
+</div>
