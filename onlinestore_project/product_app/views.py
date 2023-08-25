@@ -65,7 +65,9 @@ class ProductView(DataMixin, DetailView):
     pk_url_kwarg = "product_id"
 
     def get_queryset(self):
+        # queryset = ProductSizeColor.objects.all()
         return ProductSizeColor.objects.filter(pk=self.kwargs["product_id"])
+        # return ProductSizeColor.objects.get(product__slug='dress')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

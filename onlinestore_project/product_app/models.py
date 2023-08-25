@@ -64,6 +64,7 @@ class Product(models.Model):
     )
     description = models.TextField(blank=False)
     information = models.TextField(blank=False)
+    slug = models.SlugField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     num_visits = models.IntegerField(default=0)
@@ -75,7 +76,7 @@ class Product(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("product", kwargs={"product_id": self.pk})
+        return reverse("product", kwargs={"slug": self.slug})
 
     def get_collection_absolute_url(self):
         return reverse("collection", kwargs={"collection_name": self.collection})
@@ -87,9 +88,9 @@ class Product(models.Model):
 
 
 class ProductSizeColor(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    size = models.ForeignKey(Size, on_delete=models.CASCADE)
-    color = models.ForeignKey(Color, on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='product')
+    size = models.ForeignKey(Size, on_delete=models.CASCADE, related_name='size')
+    color = models.ForeignKey(Color, on_delete=models.CASCADE, related_name='color')
     quantity = models.PositiveIntegerField()
 
     class Meta:

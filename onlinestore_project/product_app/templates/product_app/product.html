@@ -88,12 +88,25 @@
                 <div class="d-flex mb-3">
                     <p class="text-dark font-weight-medium mb-0 mr-3">Sizes:</p>
                     <form>
+<!--                        {% for size in all_sizes %}-->
+<!--                        {% if forloop.first %}-->
+<!--                        <div class="custom-control custom-radio custom-control-inline">-->
+<!--                            <input type="checkbox" class="custom-control-input" id="all-size" name="size">-->
+<!--                            <label class="custom-control-label" for="all-size">{{ size.name }}</label>-->
+<!--                        </div>-->
+<!--                        {% else %}-->
+<!--                        <div class="custom-control custom-radio custom-control-inline">-->
+<!--                            <input type="checkbox" class="custom-control-input" id="size" name="size">-->
+<!--                            <label class="custom-control-label" for="size">{{ size.name }}</label>-->
+<!--                        </div>-->
+<!--                        {% endif %}-->
+<!--                        {% endfor %}-->
                         <div class="custom-control custom-radio custom-control-inline">
                             <input type="radio" class="custom-control-input" id="size-1" name="size">
                             <label class="custom-control-label" for="size-1">XS</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
-                            <input type="radio" class="custom-control-input" id="size-2" name="size">
+                            <input type="radio" class="custom-control-input" id="size-2" name="size" disabled>
                             <label class="custom-control-label" for="size-2">S</label>
                         </div>
                         <div class="custom-control custom-radio custom-control-inline">
