@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
-{% include 'include/navbar.html' %}
+
 {% block content %}
     <div class="col-4">
         <h1>Sign In</h1>
         <hr>
         <form method="post">
-            {{ form.as_p }}
             {% csrf_token %}
+<!--            <p>{{ form.email }}</p>-->
+<!--            <p>{{ form.password }}</p>-->
+            {{ form.as_p }}
         <button class="btn btn-outline-primary py-md-2 px-md-3">Submit</button>
         </form>
     </div>

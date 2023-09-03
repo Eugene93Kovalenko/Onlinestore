@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'product_app.apps.ProductAppConfig',
+    'product_app',
+    'users_app',
 ]
 
 MIDDLEWARE = [
@@ -78,7 +79,7 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'onlinestore_db',
+        'NAME': 'postgresql_db',
         'USER': 'postgres',
         'PASSWORD': 'udjin',
         'HOST': 'localhost',
@@ -105,6 +106,16 @@ DATABASES = {
 #     },
 # ]
 
+AUTH_USER_MODEL = "users_app.CustomUser"
+
+AUTHENTICATION_BACKENDS = [
+    'users_app.authentication_backend.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

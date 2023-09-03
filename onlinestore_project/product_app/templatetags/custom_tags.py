@@ -1,6 +1,5 @@
 from django import template
-from product_app.views import *
-from product_app.utils import *
+
 
 register = template.Library()
 

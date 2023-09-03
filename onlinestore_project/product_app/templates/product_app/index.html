@@ -53,7 +53,7 @@
                             <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                 <div class="p-3" style="max-width: 700px;">
                                     <h3 class="display-4 text-white font-weight-semi-bold mb-4">{{ category.name }} fashion</h3>
-                                    <a href="{% url 'category' category.name.lower %}" class="btn btn-light py-2 px-3">Shop Now</a>
+                                    <a href="{% url 'product_app:category' category.name.lower %}" class="btn btn-light py-2 px-3">Shop Now</a>
                                 </div>
                             </div>
                         </div>
@@ -118,7 +118,7 @@
                 <div class="position-relative" style="z-index: 1;">
                     <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
                     <h1 class="mb-4 font-weight-semi-bold">{{ selection_name.title }} collection</h1>
-                    <a href="{% url 'collection' selection_name %}"
+                    <a href="{% url 'product_app:collection' selection_name %}"
                        class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
                 </div>
             </div>
@@ -129,7 +129,7 @@
                 <div class="position-relative" style="z-index: 1;">
                     <h5 class="text-uppercase text-primary mb-3">20% off the all order</h5>
                     <h1 class="mb-4 font-weight-semi-bold">{{ next_selection_name.title }} collection</h1>
-                    <a href="{% url 'collection' next_selection_name %}"
+                    <a href="{% url 'product_app:collection' next_selection_name %}"
                        class="btn btn-outline-primary py-md-2 px-md-3">Shop Now</a>
                 </div>
             </div>

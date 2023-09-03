@@ -6,9 +6,9 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('product_app.urls')),
-    # path('users/', include('users.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('users_app.urls', namespace='users_app')),
+    # path('checkout/', include('django.contrib.auth.urls')),
+    path('', include('product_app.urls', namespace='product_app')),
 ]
 
 if settings.DEBUG:

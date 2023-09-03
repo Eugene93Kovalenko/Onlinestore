@@ -1,3 +1,5 @@
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -6,10 +8,9 @@ from django.views.generic import ListView, DetailView, CreateView
 from datetime import date
 from django.db.models import *
 
-# from .forms import CustomUserCreationForm, CustomAuthenticationForm
 from .models import *
 from .utils import DataMixin
-# from .filters import ProductFilter
+from .filters import ProductFilter
 
 
 class ShopView(DataMixin, ListView):
@@ -118,37 +119,6 @@ class CategoryView(DataMixin, ListView):
         context["color_list_for_sidebar"] = super().get_color_list(category_name=category_name)
         context["size_list_for_sidebar"] = super().get_size_list(category_name=category_name)
         return context | self.get_extra_context()
-
-
-# class SignUpView(CreateView):
-#     form_class = CustomUserCreationForm
-#     success_url = reverse_lazy("home")
-#     template_name = "registration/register.html"
-#
-#
-# class CustomLoginView(LoginView):
-#     form_class = CustomAuthenticationForm
-#     success_url = reverse_lazy("home")
-
-    # def post(self, request):
-    #     form = UserCreationForm(request.POST)
-    #
-    #     if form.is_valid():
-    #         form.save()
-    #         username = form.cleaned_data.get('username')
-    #         password = form.cleaned_data.get('password')
-    #         user = authenticate(username=username, password=password)
-    #         login(request, user)
-    #         return redirect('home')
-    #     context = {
-    #         'form': form,
-    #     }
-    #     return render(request, self.template_name, context)
-
-    # def get_context_data(self, *, object_list=None, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['form'] = UserCreationForm()
-    #     return context | self.get_extra_context()
 
 
 def contact(request):
