@@ -1,7 +1,7 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.views import LoginView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView, DetailView, CreateView
@@ -39,7 +39,7 @@ class HomeView(DataMixin, ListView):
     context_object_name = "products"
 
     def get_queryset(self):
-        return ProductSizeColor.objects.all()[:4]
+        return ProductSizeColor.objects.distinct('product_id', 'color_id')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -60,22 +60,19 @@ class HomeView(DataMixin, ListView):
 
 
 class ProductView(DataMixin, DetailView):
-    model = ProductSizeColor
+    model = Product
     template_name = "product_app/product.html"
     context_object_name = "product"
-    pk_url_kwarg = "product_id"
+    slug_url_kwarg = "product_slug"
 
     def get_queryset(self):
-        # queryset = ProductSizeColor.objects.all()
-        return ProductSizeColor.objects.filter(pk=self.kwargs["product_id"])
-        # return ProductSizeColor.objects.get(product__slug='dress')
+        return Product.objects.filter(slug=self.kwargs["product_slug"])
+        # return get_object_or_404(Product, slug=self.kwargs["product_slug"])
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["product_images"] = ProductImage.objects.filter(
-            is_active=True, product_id=self.kwargs["product_id"]
-        )
-        return context | self.get_extra_context()
+        context["product_images"] = Product.objects.get(slug=self.kwargs["product_slug"]).images.all()
+        return context | self.get_extra_context()   #решить
 
 
 class CollectionView(DataMixin, ListView):

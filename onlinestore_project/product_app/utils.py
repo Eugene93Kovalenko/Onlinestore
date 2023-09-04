@@ -8,8 +8,8 @@ class DataMixin:
         context = kwargs
         context['categories'] = Category.objects.all()
         context['gender_categories'] = Category.objects.filter(name__in=['Women', 'Men', 'Kids'])
-        context['color_set'] = [product.color for product in self.get_queryset()]
-        context['size_set'] = [product.size for product in self.get_queryset()]
+        # context['color_set'] = [product.color for product in self.get_queryset()]
+        # context['size_set'] = [product.size for product in self.get_queryset()]
         context['count_products'] = self.get_queryset().count()
         context['all_sizes'] = Size.objects.all()
         context['all_colors'] = Color.objects.all()
@@ -66,7 +66,7 @@ class DataMixin:
     def get_color_list(self, collection_name=None, category_name=None):
         count_product_per_color = []
         all_colors = self.get_extra_context()['all_colors']
-        color_set = self.get_extra_context()['color_set']
+        color_set = [product.color for product in self.get_queryset()]
         for color in all_colors:
             if color in color_set:
                 if collection_name:
@@ -85,7 +85,7 @@ class DataMixin:
     def get_size_list(self, collection_name=None, category_name=None):
         count_product_per_size = []
         all_sizes = self.get_extra_context()['all_sizes']
-        size_set = self.get_extra_context()['size_set']
+        size_set = [product.size for product in self.get_queryset()]
         for size in all_sizes:
             if size in size_set:
                 if collection_name:

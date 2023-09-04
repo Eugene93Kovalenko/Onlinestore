@@ -109,7 +109,7 @@ DATABASES = {
 AUTH_USER_MODEL = "users_app.CustomUser"
 
 AUTHENTICATION_BACKENDS = [
-    'users_app.authentication_backend.EmailAuthBackend',
+    'users_app.backends.EmailAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
 
